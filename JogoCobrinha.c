@@ -100,7 +100,6 @@ main()
  		printf ("Velocidade: %d",velo2);
  		mgotoxy(3,22);
 
- 		//printf ("Jogo desenvolvido por Gustavo Ferreira");
  		Sleep(velo);
  		for(x=1;x<t;x++)
  			{ if(cx[0]==cx[x]&&cy[0]==cy[x])tecla='p';
