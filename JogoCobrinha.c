@@ -5,10 +5,12 @@
 #include <time.h>
 
 
+//Faltam apenas alguns ajustes como melhorar a regra de movimenta√ß√£o da cobrinha.
+
 
 void mgotoxy(int x, int y)
 {
- //Define a posiÁ„o do cursor no buffer da tela do console especificado
+ //Define a posi√ß√£o do cursor no buffer da tela do console especificado
  SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),(COORD){x,y});
 }
 
@@ -24,9 +26,9 @@ main()
  
  
  
-  //219 È o caractere |
-  //È necess·rio usar a funcao mgotoxy para reposicionar o cursor 
-  //Esses laÁos sao para desenhar o quadro com os limites da tela
+  //219 √© o caractere |
+  //√© necess√°rio usar a funcao mgotoxy para reposicionar o cursor 
+  //Esses la√ßos sao para desenhar o quadro com os limites da tela
  for(x=0;x<18;x++)
  { mgotoxy(0,x); //vertical esquerda.//
  printf("%c",219);
@@ -46,7 +48,7 @@ main()
  
  
  
- //GeraÁ„o da comida da cobrinha
+ //Gera√ß√£o da comida da cobrinha
  //tamanho deve ser 1 menor do que o do quadro
  srand(time(NULL));
  mx=(rand()%49)+1;
@@ -108,7 +110,7 @@ main()
  	
  	//Verifica se o jogo foi parado ou nao
  	//caso nao tenha sido parado, pega o valor com o getch e gracas
- 	//ao kbhit(), as setas retornam os valores, 72, 75, 77 e 80 que s„o 
+ 	//ao kbhit(), as setas retornam os valores, 72, 75, 77 e 80 que s√£o 
  	//aos caracteres seguintes caracteres da tabela ascii.
 	if(tecla!='p')
 		tecla=getch();
