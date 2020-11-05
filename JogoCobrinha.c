@@ -118,7 +118,7 @@ main()
  	//Verifica se o jogo foi parado ou nao
  	//caso nao tenha sido parado, pega o valor com o getch e gracas
  	//ao kbhit(), as setas retornam os valores, 72, 75, 77 e 80 que são 
- 	//aos caracteres seguintes caracteres da tabela ascii.
+ 	//aos seguintes caracteres da tabela ascii.
 	if(tecla!='p')
 		tecla=getch();
 	if(tecla=='K')//ESQUERDA
