@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-
-//Faltam apenas alguns ajustes como melhorar a regra de movimentação da cobrinha.
+#define bordaY 18
+#define bordaX 50
 
 
 void mgotoxy(int x, int y)
@@ -16,7 +16,7 @@ void mgotoxy(int x, int y)
 
 main()
 {
- int x,d=2,cx[300]={1,2},cy[300]={7,7},t=1,mx,my,velo=100,velo2=5;
+ int x,d=2,cx[300]={15,2},cy[300]={7,7},t=1,mx,my,velo=100,velo2=10;
  char niv;
 
  char tecla='a';
@@ -29,20 +29,20 @@ main()
   //219 é o caractere |
   //é necessário usar a funcao mgotoxy para reposicionar o cursor 
   //Esses laços sao para desenhar o quadro com os limites da tela
- for(x=0;x<18;x++)
+ for(x=0;x<bordaY;x++)
  { mgotoxy(0,x); //vertical esquerda.//
  printf("%c",219);
  }
- for(x=0;x<50;x++)
+ for(x=0;x<bordaX;x++)
  { mgotoxy(x,0); //horizontal ssuperior//
  printf("%c",219);
  }
- for(x=0;x<18;x++)
- { mgotoxy(50,x); //vertical direita//
+ for(x=0;x<bordaY;x++)
+ { mgotoxy(bordaX,x); //vertical direita//
  printf("%c",219);
  }
- for(x=0;x<51;x++)
- { mgotoxy(x,18); //horizontal inferior.//
+ for(x=0;x<bordaX+1;x++)
+ { mgotoxy(x,bordaY); //horizontal inferior.//
  printf("%c",219);
  }
  
@@ -54,7 +54,7 @@ main()
  mx=(rand()%49)+1;
  my=(rand()%17)+1;
  
- //variavel velocidade
+ //variavel velocidade para a funcao sleep
  velo = 200;
  
  //kbhit espera o usuario pressionar uma tecla
@@ -65,7 +65,7 @@ main()
  			{ cx[x]=cx[x-1];
 			 cy[x]=cy[x-1];
  			}
- 
+ 			//d recebe um valor modificado de acordo com a tecla pressionada
  			if(d==0)
 			 	cx[0]--;
  			if(d==1)
@@ -74,37 +74,45 @@ main()
 			 	cx[0]++;
 			if(d==3)
 				cy[0]++;
+			//rastro	
  			mgotoxy(cx[t],cy[t]);
-			 printf(" ");
- 			if(mx==cx[0]&&my==cy[0]){
+			printf(" ");
+ 			
+			if(mx==cx[0]&&my==cy[0]){
  				t++;
  				pontos++;
 				mx=(rand()%25)+1;
  				my=(rand()%17)+1;
 				velo-=5;
- 				velo2+=5;
+ 				velo2+=10;
  
  			}
+ 		
+		//criacao da cobrinha com o caractere ||	
  		mgotoxy(cx[0],cy[0]);
- 
  		printf("%c",219);
-
+		
+		//primeiro caractere da tabela ASCII e comida da cobrinha
  		mgotoxy(mx,my);
  		printf("%c",1);
  		mgotoxy(55,10);
- 
+ 		
+ 		//posicao dos placares e informações
  		printf ("Pontos: %d",pontos);
  		mgotoxy(55,5);
  		printf ("Nivel: %d",nivel);
  		mgotoxy(55,3);
  		printf ("Velocidade: %d",velo2);
  		mgotoxy(3,22);
-
+		
+		//Funcao que "pausa" o programa
  		Sleep(velo);
- 		for(x=1;x<t;x++)
- 			{ if(cx[0]==cx[x]&&cy[0]==cy[x])tecla='p';
+ 		for(x=1;x<t;x++){
+		 	//verifica se bateu com o corpo 
+		 	if(cx[0]==cx[x]&&cy[0]==cy[x])tecla='p';
  			}
-		 	if(cy[0]==0||cy[0]==18||cx[0]==0||cx[0]==50)tecla='p';
+ 			//verifica se bateu nas bordas
+		 	if(cy[0]==0||cy[0]==bordaY||cx[0]==0||cx[0]==bordaX)tecla='p';
  	}
  	
  	//Verifica se o jogo foi parado ou nao
@@ -121,13 +129,12 @@ main()
 		d=2;
 	if(tecla=='P')//BAIXO
 		d=3;
-	if(cy[0]==0||cy[0]==18||cx[0]==0||cx[0]==26)//se bater nas bordas o jogo acaba
+	if(cy[0]==0||cy[0]==bordaY||cx[0]==0||cx[0]==26)//se bater nas bordas o jogo acaba
 		tecla='p';
  }
  
  //limpa a tela	
  system("cls");
- //system("pause");
 
  printf ("\n\n\tGAME OVER\n\n");
 
