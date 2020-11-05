@@ -143,3 +143,10 @@ main()
 getch();
 
 }
+
+/*Referencias: 
+ *https://universestudio.wordpress.com/
+ *https://www.hardware.com.br/comunidade/include-jogo/1001377/
+ *http://linguagemprisma.br4.biz/blog/especial-biblioteca-win-algumas-funcoes-do-windows-h/
+ *https://www.tutorialspoint.com/kbhit-in-c-language
+*/
